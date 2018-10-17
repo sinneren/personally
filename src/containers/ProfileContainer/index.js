@@ -4,6 +4,11 @@ import { connect } from 'react-redux';
 import Profile from '../../components/Profile';
 
 class ProfileContainer extends Component {
+    componentWillMount() {
+        if (!this.props.state.users.user) {
+            this.props.router.push('/signin')
+        }
+    }
     render() {
         return (
             <Profile data={this.props.state.users.user} />
