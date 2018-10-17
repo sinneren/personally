@@ -2,6 +2,7 @@
     position: relative;
     float: right;
     padding: 17px 20px 17px 57px;
+    text-align: right;
 }
 .user-pic {
     position: absolute;

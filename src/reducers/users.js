@@ -6,7 +6,15 @@ import {
     USER_AUTH_SUCCESS,
 } from '../constants/users';
 
-const initialState = {
+let user = JSON.parse(localStorage.getItem('user'));
+
+const initialState = user ? {
+    data: [],
+    reg: false,
+    request: false,
+    auth: true,
+    user: user,
+} : {
     data: [],
     reg: false,
     request: false,

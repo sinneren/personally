@@ -110,6 +110,7 @@ export function signIn(state) {
                                 }
                             }
                         });
+                        localStorage.setItem('user', JSON.stringify(res[0]));
                     } else {
                         dispatch({
                             type: USERS_FAIL,
