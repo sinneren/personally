@@ -25,11 +25,12 @@ class FormReg extends Component {
     }
     handleChange(event) {
         const target = event.currentTarget;
-        this.setState({
+        this.setState(prevState => ({
             userinfo: {
+                ...prevState.userinfo,
                 [target.name]: target.value,
             },
-        }, () => this.validateFields(target.name, target.value));
+        }), () => this.validateFields(target.name, target.value));
     }
     handleReg(event) {
         event.preventDefault();
