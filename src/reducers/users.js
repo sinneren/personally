@@ -11,6 +11,7 @@ const initialState = {
     reg: false,
     id: null,
     request: false,
+    auth: false,
 };
 
 export default function users(state = initialState, action) {

@@ -13,7 +13,7 @@ class App extends Component {
           <div className="container">
             <img src={logo} className="App-logo" alt="logo" />
             <h1 className="App-title">Welcome to React</h1>
-            <TopMenu />
+            <TopMenu auth={this.props.state.users.auth}/>
           </div>
         </header>
         <main className="App-intro">

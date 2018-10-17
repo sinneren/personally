@@ -8,9 +8,11 @@ import { Provider } from 'react-redux';
 
 import reducer from "./reducers";
 import registerServiceWorker from './registerServiceWorker';
-import App from './App';
-import './index.css';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
+
+import App from './App';
 import FormAuth from './components/FormAuth';
 import FormReg from './components/FormReg';
 
