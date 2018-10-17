@@ -102,7 +102,12 @@ export function signIn(state) {
                             type: USER_AUTH_SUCCESS,
                             payload: {
                                 auth: true,
-                                id: res[0].id
+                                user: {
+                                    id: res[0].id,
+                                    username: res[0].username,
+                                    avatar: res[0].avatar,
+                                    email: res[0].email,
+                                }
                             }
                         });
                     } else {

@@ -1,0 +1,21 @@
+.user {
+    position: relative;
+    float: right;
+    padding: 17px 20px 17px 57px;
+}
+.user-pic {
+    position: absolute;
+    top: 19px;
+    left: 15px;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+}
+.user-name {
+    display: block;
+    font-weight: 600;
+}
+.user-link {
+    display: block;
+    font-size: 12px;
+}

@@ -9,9 +9,9 @@ import {
 const initialState = {
     data: [],
     reg: false,
-    id: null,
     request: false,
     auth: false,
+    user: null,
 };
 
 export default function users(state = initialState, action) {
@@ -43,8 +43,8 @@ export default function users(state = initialState, action) {
             return {
                 ...state,
                 request: false,
-                id: action.payload.id,
-                auth: action.payload.auth
+                auth: action.payload.auth,
+                user: action.payload.user,
             }
         default:
             return state

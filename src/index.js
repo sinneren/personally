@@ -15,6 +15,7 @@ import './index.css';
 import App from './App';
 import FormAuth from './components/FormAuth';
 import FormReg from './components/FormReg';
+import ProfileContainer from './containers/ProfileContainer';
 
 const middleware = [thunk];
 if (process.env.NODE_ENV !== "production") {
@@ -26,6 +27,7 @@ const routes = (
     <Route path='/' component={App}>
         <Route path='/signin' component={FormAuth} />
         <Route path='/signup' component={FormReg} />
+        <Route path='/profile' component={ProfileContainer} />
     </Route>
 )
 ReactDOM.render(

@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router';
+import './style.css';
 
 export default class TopMenu extends PureComponent {
     render() {
@@ -18,12 +19,6 @@ export default class TopMenu extends PureComponent {
                         <Link to='/signin' className="nav-link">Sign In</Link>
                     </li>
                 )}
-                {this.props.auth && (
-                    <li className="nav-item">
-                        <Link to='/signout' className="nav-link">Sign Out</Link>
-                    </li>
-                )}
-
             </nav>
         )
     }
