@@ -24,6 +24,12 @@ export default function boards (state = initialState, action) {
                 data: action.response_data,
                 request: false,
             }
+        case BOARDS_ADDED:
+            state.data.push(action.payload.item)
+            return {
+                ...state,
+                request: false,
+            }
         case BOARDS_FAIL:
             return {
                 ...state,

@@ -33,3 +33,32 @@ export function getBoards(id) {
             })
     }
 }
+export function addBoard(id) {
+    return dispatch => {
+        dispatch({
+            type: BOARDS_REQUEST,
+            error_message: ''
+        });
+        axios
+            .post(URL + `users/${id}/boards`, {
+                text: '',
+                type: '',
+                tasks: [],
+            })
+            .then(response => {
+                if (response.status === 201) {
+                    dispatch({
+                        type: BOARDS_ADDED,
+                        payload: {
+                            item: response.data
+                        }
+                    });
+                } else {
+                    dispatch({
+                        type: BOARDS_FAIL,
+                        error_message: 'err'
+                    });
+                }
+            })
+    }
+}

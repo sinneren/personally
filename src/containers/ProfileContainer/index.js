@@ -4,14 +4,23 @@ import Profile from '../../components/Profile';
 import { browserHistory } from 'react-router';
 
 class ProfileContainer extends Component {
-    componentWillMount() {
+    constructor(props) {
+        super(props);
+        this.defaultProps = {
+            avatar: '',
+            username: '',
+            email: '',
+        }
         if (this.props.state.users.user === null) {
             browserHistory.push('/');
+        } else {
+            this.defaultProps = this.props.state.users.user;
         }
+
     }
     render() {
         return (
-            <Profile data={this.props.state.users.user} />
+            <Profile data={this.defaultProps} />
         )
     }
 }
