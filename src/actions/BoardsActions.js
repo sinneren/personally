@@ -4,6 +4,7 @@ import {
     BOARDS_GET,
     BOARDS_ADDED,
     BOARDS_FAIL,
+    BOARDS_TASK_ADDED,
     BOARDS_EDITED,
     BOARDS_DELETED,
 } from '../constants/boards';
@@ -51,6 +52,35 @@ export function addBoard(id) {
                         type: BOARDS_ADDED,
                         payload: {
                             item: response.data
+                        }
+                    });
+                } else {
+                    dispatch({
+                        type: BOARDS_FAIL,
+                        error_message: 'err'
+                    });
+                }
+            })
+    }
+}
+export function addTasks(user_id, board_id) {
+    return dispatch => {
+        dispatch({
+            type: BOARDS_REQUEST,
+            error_message: ''
+        });
+        axios
+            .post(URL + `users/${user_id}/boards/${board_id}/tasks`, {
+                text: '',
+                type: '',
+            })
+            .then(response => {
+                if (response.status === 201) {
+                    dispatch({
+                        type: BOARDS_TASK_ADDED,
+                        payload: {
+                            id: board_id,
+                            item: response.data,
                         }
                     });
                 } else {

@@ -17,6 +17,7 @@ class TasksContainer extends Component {
     handleClick() {
         this.props.actions.addBoard(this.props.state.users.user.id);
     }
+
     componentDidMount() {
         if (this.props.state.users.user !== null) {
             this.props.actions.getBoards(this.props.state.users.user.id)
@@ -26,7 +27,7 @@ class TasksContainer extends Component {
         return (
             <React.Fragment>
                 <button className="btn btn-default float-left" title="Add new board" onClick={this.handleClick}>+</button>
-                <Boards boards={this.props.state.boards.data} />
+                <Boards boards={this.props.state.boards.data} action={this.props.actions.addTasks}/>
             </React.Fragment>
         )
     }

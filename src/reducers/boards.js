@@ -3,6 +3,7 @@ import {
     BOARDS_GET,
     BOARDS_ADDED,
     BOARDS_FAIL,
+    BOARDS_TASK_ADDED,
     BOARDS_EDITED,
     BOARDS_DELETED,
 } from '../constants/boards';
@@ -26,6 +27,16 @@ export default function boards (state = initialState, action) {
             }
         case BOARDS_ADDED:
             state.data.push(action.payload.item)
+            return {
+                ...state,
+                request: false,
+            }
+        case BOARDS_TASK_ADDED:
+            state.data.map(item => {
+                if (item.id === action.payload.id) {
+                    item.tasks.push(action.payload.item);
+                }
+            })
             return {
                 ...state,
                 request: false,
