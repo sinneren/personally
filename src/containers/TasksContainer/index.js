@@ -15,7 +15,10 @@ class TasksContainer extends Component {
     }
     render() {
         return (
-            <Boards boards={this.props.state.boards.data} />
+            <React.Fragment>
+                <button className="btn btn-default">+</button>
+                <Boards boards={this.props.state.boards.data} />
+            </React.Fragment>
         )
     }
 }

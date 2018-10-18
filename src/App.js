@@ -32,7 +32,7 @@ class App extends Component {
           </div>
         </header>
         <main className="App-intro pt-4">
-          <div className="container">
+          <div className={(this.props.location.pathname === '/tasks') ? 'container-fluid' : 'container'}>
             {this.props.children}
           </div>
         </main>

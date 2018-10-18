@@ -11,10 +11,10 @@ export default class Board extends Component {
             );
         });
         return (
-            <div class="list-group mb-5">
-                <div class="list-group-item list-group-item-action flex-column align-items-start active">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">{this.props.title}</h5>
+            <div className="list-group mb-5">
+                <div className="list-group-item list-group-item-action flex-column align-items-start active">
+                    <div className="d-flex w-100 justify-content-between">
+                        <h5 className="mb-1">{this.props.title}</h5>
                         <small>{datetimeformatted}</small>
                     </div>
                 </div>

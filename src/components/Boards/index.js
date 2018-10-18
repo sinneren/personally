@@ -5,8 +5,8 @@ export default class Boards extends Component {
         let list = null;
         list = this.props.boards.map(item => {
             return (
-                <div className="col-lg-3">
-                    <Board key={item.id} title={item.name} date={item.createdAt} tasks={item.tasks} />
+                <div className="col-lg-2" key={item.id}>
+                    <Board title={item.name} date={item.createdAt} tasks={item.tasks} />
                 </div>
             );
         });
