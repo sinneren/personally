@@ -114,6 +114,13 @@ class FormReg extends Component {
                             text='Successfull registration' />
                     </div>
                 )}
+                {(this.props.state.users.error_message.length > 0) && (
+                    <div className="form-row">
+                        <Alert
+                            type='danger mt-5'
+                            text={this.props.state.users.error_message} />
+                    </div>
+                )}
             </form>
         )
     }

@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import * as usersActions from '../../actions';
+import Alert from '../Alert';
 
 class FormAuth extends Component {
     constructor(props) {
@@ -26,23 +27,34 @@ class FormAuth extends Component {
     }
     componentDidUpdate() {
         if (this.props.state.users.auth) {
-            browserHistory.push('/');
+            browserHistory.push('/profile');
         }
     }
     render() {
         return (
             <form className="pt-5">
-                <div className="form-group">
-                    <label>Your username
-                    <input className="form-control form-control-lg" type='text' name="username" value={this.state.username} onChange={this.handleChange} disabled={this.props.state.users.request && 'disabled'} />
-                    </label>
+                <div className="form-row">
+                    <div className="form-group col-md-6">
+                        <label className="d-block">Your username
+                        <input className="form-control form-control-lg" type='text' name="username" value={this.state.username} onChange={this.handleChange} disabled={this.props.state.users.request && 'disabled'} />
+                        </label>
+                    </div>
+                    <div className="form-group col-md-6">
+                        <label className="d-block">Your password
+                        <input className="form-control form-control-lg" type='password' name="password" value={this.state.password} onChange={this.handleChange} disabled={this.props.state.users.request && 'disabled'} />
+                        </label>
+                    </div>
                 </div>
-                <div className="form-group">
-                    <label>Your password
-                    <input className="form-control form-control-lg" type='password' name="password" value={this.state.password} onChange={this.handleChange} disabled={this.props.state.users.request && 'disabled'} />
-                    </label>
+                <div className="form-row">
+                    <button onClick={this.handleSubmit} className="btn btn-lg btn-primary" disabled={this.props.state.users.request && 'disabled'} >Sign In</button>
                 </div>
-                <button onClick={this.handleSubmit} className="btn btn-lg btn-primary" disabled={this.props.state.users.request && 'disabled'} >Sign In</button>
+                {(this.props.state.users.error_message.length > 0) && (
+                    <div className="form-row">
+                        <Alert
+                            type='danger mt-5'
+                            text={this.props.state.users.error_message} />
+                    </div>
+                )}
             </form>
         )
     }

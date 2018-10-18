@@ -4,10 +4,12 @@ import {
     USERS_SUCCESS,
     USER_REG_SUCCESS,
     USER_AUTH_SUCCESS,
+    USER_SIGNOUT,
 } from '../constants/users';
 import { URL } from '../constants/default';
 import axios from 'axios';
 import sha256 from 'sha256';
+import { browserHistory } from 'react-router';
 
 export function getUserList() {
     return dispatch => {
@@ -111,6 +113,7 @@ export function signIn(state) {
                             }
                         });
                         localStorage.setItem('user', JSON.stringify(res[0]));
+                        browserHistory.push('/')
                     } else {
                         dispatch({
                             type: USERS_FAIL,
@@ -125,5 +128,17 @@ export function signIn(state) {
                     error_message: 'err'
                 });
             })
+    }
+}
+export function signOut() {
+    return dispatch => {
+        dispatch({
+            type: USER_SIGNOUT,
+            payload: {
+                auth: false
+            }
+        });
+        localStorage.removeItem('user');
+        browserHistory.push('/')
     }
 }

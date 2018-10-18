@@ -10,7 +10,7 @@ export default class User extends PureComponent {
                 <Link to='/profile'>
                     <span className="user-name">{this.props.data.username}</span>
                 </Link>
-                <Link to='/signout' className="user-link">Sign Out</Link>
+                <Link to='/signout' className="user-link" onClick={this.props.onSignout}>Sign Out</Link>
             </div>
         )
     }

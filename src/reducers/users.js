@@ -4,6 +4,7 @@ import {
     USERS_SUCCESS,
     USER_REG_SUCCESS,
     USER_AUTH_SUCCESS,
+    USER_SIGNOUT,
 } from '../constants/users';
 
 let user = JSON.parse(localStorage.getItem('user'));
@@ -14,12 +15,14 @@ const initialState = user ? {
     request: false,
     auth: true,
     user: user,
+    error_message: '',
 } : {
     data: [],
     reg: false,
     request: false,
     auth: false,
     user: null,
+    error_message: '',
 };
 
 export default function users(state = initialState, action) {
@@ -38,7 +41,8 @@ export default function users(state = initialState, action) {
         case USERS_FAIL:
             return {
                 ...state,
-                request: false
+                request: false,
+                error_message: action.error_message,
             }
         case USER_REG_SUCCESS:
             return {
@@ -53,6 +57,12 @@ export default function users(state = initialState, action) {
                 request: false,
                 auth: action.payload.auth,
                 user: action.payload.user,
+            }
+        case USER_SIGNOUT:
+            return {
+                ...state,
+                auth: action.payload.auth,
+                user: null,
             }
         default:
             return state

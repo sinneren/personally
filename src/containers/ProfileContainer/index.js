@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Profile from '../../components/Profile';
+import { browserHistory } from 'react-router';
 
 class ProfileContainer extends Component {
     componentWillMount() {
-        if (!this.props.state.users.user) {
-            this.props.router.push('/signin')
+        if (this.props.state.users.user === null) {
+            browserHistory.push('/');
         }
     }
     render() {

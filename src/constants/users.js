@@ -3,3 +3,4 @@ export const USERS_SUCCESS = 'USERS_SUCCESS';
 export const USERS_FAIL = 'USERS_FAIL';
 export const USER_REG_SUCCESS = 'USER_REG_SUCCESS';
 export const USER_AUTH_SUCCESS = 'USER_AUTH_SUCCESS';
+export const USER_SIGNOUT = 'USER_SIGNOUT';
