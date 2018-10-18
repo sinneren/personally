@@ -1,1 +1,1 @@
-export const URL = 'https://5badf3f9a65be000146763aa.mockapi.io/';
+export const URL = 'https://5bc845b48bfe5a00131b6eb8.mockapi.io/';

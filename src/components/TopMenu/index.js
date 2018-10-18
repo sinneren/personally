@@ -9,6 +9,9 @@ export default class TopMenu extends PureComponent {
                 <li className="nav-item">
                     <Link to='/' className="nav-link">Main</Link>
                 </li>
+                <li className="nav-item">
+                    <Link to='/tasks' className="nav-link">Tasks</Link>
+                </li>
                 {!this.props.auth && (
                     <li className="nav-item">
                         <Link to='/signup' className="nav-link">Sign Up</Link>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as usersActions from '../../actions';
+import * as usersActions from '../../actions/UserActions';
 import Alert from '../Alert';
 
 class FormReg extends Component {
