@@ -7,6 +7,7 @@ import {
     BOARDS_EDITED,
     BOARDS_DELETED,
     BOARDS_TASK_EDITED,
+    BOARDS_TASK_DELETED,
 } from '../constants/boards';
 
 const initialState = {
@@ -55,6 +56,12 @@ export default function boards (state = initialState, action) {
                 error_message: action.error_message,
             }
         case BOARDS_TASK_EDITED:
+            return {
+                ...state,
+                request: false,
+                error_message: action.error_message,
+            }
+        case BOARDS_TASK_DELETED:
             return {
                 ...state,
                 request: false,

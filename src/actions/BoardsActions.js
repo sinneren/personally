@@ -8,6 +8,7 @@ import {
     BOARDS_EDITED,
     BOARDS_DELETED,
     BOARDS_TASK_EDITED,
+    BOARDS_TASK_DELETED,
 } from '../constants/boards';
 import axios from 'axios';
 
@@ -138,5 +139,28 @@ export function updateTask(user_id, board_id, id, data) {
                 }
             })
     }
-
+}
+export function deleteTask(user_id, board_id, id) {
+      return dispatch => {
+        dispatch({
+            type: BOARDS_REQUEST,
+            error_message: '',
+        })
+        axios
+            .delete(URL + `users/${user_id}/boards/${board_id}/tasks/${id}`)
+            .then(response => {
+                if (response.status === 200) {
+                    console.log(response)
+                    dispatch({
+                        type: BOARDS_TASK_DELETED,
+                        error_message: '',
+                    });
+                } else {
+                    dispatch({
+                        type: BOARDS_FAIL,
+                        error_message: 'err',
+                    });
+                }
+            })
+    }
 }

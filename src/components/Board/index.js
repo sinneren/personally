@@ -28,7 +28,15 @@ export default class Board extends Component {
         let list = null;
         list = this.props.tasks.map(item => {
             return (
-                <Task key={item.id} id={item.id} userid={this.props.userid} board_id={this.props.id} title={item.name} text={item.text} type={item.type} actions={this.props.actions} />
+                <Task key={item.id}
+                    id={item.id}
+                    userid={this.props.userid}
+                    board_id={this.props.id}
+                    title={item.name}
+                    text={(item.text) ? item.text : ''}
+                    type={item.type}
+                    actions={this.props.actions}
+                />
             );
         });
         return (
