@@ -5,7 +5,6 @@ import ContentEditable from 'react-contenteditable';
 export default class Board extends Component {
     constructor(props) {
         super(props);
-        this.handleClick = this.handleClick.bind(this);
         this.state = {
             title: this.props.title,
         }
@@ -18,9 +17,9 @@ export default class Board extends Component {
             title: event.target.value,
         })
     }
-    handleClick(event) {
+    handleClick = event => {
         event.preventDefault();
-        this.props.actions.addBoard(this.props.userid, this.props.id);
+        this.props.actions.addTasks(this.props.userid, this.props.id);
     }
 
     render() {
@@ -29,7 +28,7 @@ export default class Board extends Component {
         let list = null;
         list = this.props.tasks.map(item => {
             return (
-                <Task key={item.id} title={item.name} text={item.text} type={item.type} />
+                <Task key={item.id} id={item.id} userid={this.props.userid} board_id={this.props.id} title={item.name} text={item.text} type={item.type} actions={this.props.actions} />
             );
         });
         return (

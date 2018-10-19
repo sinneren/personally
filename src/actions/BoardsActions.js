@@ -7,6 +7,7 @@ import {
     BOARDS_TASK_ADDED,
     BOARDS_EDITED,
     BOARDS_DELETED,
+    BOARDS_TASK_EDITED,
 } from '../constants/boards';
 import axios from 'axios';
 
@@ -114,4 +115,28 @@ export function updateBoard(user_id, board_id, data) {
                 }
             })
     }
+}
+export function updateTask(user_id, board_id, id, data) {
+    return dispatch => {
+        dispatch({
+            type: BOARDS_REQUEST,
+            error_message: '',
+        })
+        axios
+            .put(URL + `users/${user_id}/boards/${board_id}/tasks/${id}`, data)
+            .then(response => {
+                if (response.status === 200) {
+                    dispatch({
+                        type: BOARDS_TASK_EDITED,
+                        error_message: '',
+                    });
+                } else {
+                    dispatch({
+                        type: BOARDS_FAIL,
+                        error_message: 'err',
+                    });
+                }
+            })
+    }
+
 }
