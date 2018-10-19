@@ -47,6 +47,12 @@ export default function boards (state = initialState, action) {
                 request: false,
                 error_message: action.error_message,
             }
+        case BOARDS_EDITED:
+            return {
+                ...state,
+                request: false,
+                error_message: action.error_message,
+            }
         default:
             return state
     }

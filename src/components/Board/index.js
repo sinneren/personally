@@ -1,14 +1,28 @@
 import React, { Component } from 'react';
 import Task from '../Task';
+import ContentEditable from 'react-contenteditable';
+
 export default class Board extends Component {
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
+        this.state = {
+            title: this.props.title,
+        }
+    }
+    handleTitleChange = () => {
+        this.props.actions.updateBoard(this.props.userid, this.props.id, { name: this.state.title});
+    }
+    handleTitleInput = event => {
+        this.setState({
+            title: event.target.value,
+        })
     }
     handleClick(event) {
         event.preventDefault();
-        this.props.action(this.props.userid, this.props.id);
+        this.props.actions.addBoard(this.props.userid, this.props.id);
     }
+
     render() {
         const datetime = new Date(this.props.date);
         const datetimeformatted = datetime.getDate() + '/' + datetime.getMonth() + '/' + datetime.getFullYear();
@@ -22,7 +36,7 @@ export default class Board extends Component {
             <div className="list-group mb-5">
                 <div className="list-group-item list-group-item-action flex-column align-items-start active">
                     <div className="d-flex w-100 justify-content-between">
-                        <h5 className="mb-1">{this.props.title}</h5>
+                        <ContentEditable className="mb-1" html={this.state.title} onBlur={this.handleTitleChange} onChange={this.handleTitleInput} tagName='h5' />
                         <small>{datetimeformatted}</small>
                     </div>
                 </div>

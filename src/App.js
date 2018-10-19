@@ -22,7 +22,7 @@ class App extends Component {
         <header className="App-header ">
           <div className="container">
             <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Prnslly</h1>
+            <h1 className="App-title">Prsnlly</h1>
             <div className="d-flex justify-content-end">
                 <TopMenu auth={this.props.state.users.auth}/>
                 {this.props.state.users.auth && (

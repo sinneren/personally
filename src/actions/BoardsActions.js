@@ -67,7 +67,7 @@ export function addTasks(user_id, board_id) {
     return dispatch => {
         dispatch({
             type: BOARDS_REQUEST,
-            error_message: ''
+            error_message: '',
         });
         axios
             .post(URL + `users/${user_id}/boards/${board_id}/tasks`, {
@@ -87,6 +87,29 @@ export function addTasks(user_id, board_id) {
                     dispatch({
                         type: BOARDS_FAIL,
                         error_message: 'err'
+                    });
+                }
+            })
+    }
+}
+export function updateBoard(user_id, board_id, data) {
+    return dispatch => {
+        dispatch({
+            type: BOARDS_REQUEST,
+            error_message: '',
+        })
+        axios
+            .put(URL + `users/${user_id}/boards/${board_id}`, data)
+            .then(response => {
+                if (response.status === 200) {
+                    dispatch({
+                        type: BOARDS_EDITED,
+                        error_message: '',
+                    });
+                } else {
+                    dispatch({
+                        type: BOARDS_FAIL,
+                        error_message: 'err',
                     });
                 }
             })

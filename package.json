@@ -8,6 +8,7 @@
     "express": "^4.16.3",
     "mssql": "^4.2.1",
     "react": "^16.5.2",
+    "react-contenteditable": "^3.1.1",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",
     "react-router": "^3.2.1",

@@ -27,7 +27,7 @@ class TasksContainer extends Component {
         return (
             <React.Fragment>
                 <button className="btn btn-default float-left" title="Add new board" onClick={this.handleClick}>+</button>
-                <Boards boards={this.props.state.boards.data} action={this.props.actions.addTasks}/>
+                <Boards boards={this.props.state.boards.data} actions={this.props.actions}/>
             </React.Fragment>
         )
     }

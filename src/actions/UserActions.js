@@ -15,7 +15,7 @@ export function getUserList() {
     return dispatch => {
         dispatch({
             type: USERS_REQUEST,
-            error_message: ''
+            error_message: '',
         });
         axios
             .get(URL + 'users')
@@ -23,7 +23,8 @@ export function getUserList() {
                 if (response.status === 200) {
                     dispatch({
                         type: USERS_SUCCESS,
-                        response_data: response.data
+                        response_data: response.data,
+                        error_message: '',
                     });
                 }
             })
@@ -39,7 +40,7 @@ export function pushNewUser(state) {
     return dispatch => {
         dispatch({
             type: USERS_REQUEST,
-            error_message: ''
+            error_message: '',
         });
         axios
             .get(URL + 'users?search=' + state.username)
@@ -62,13 +63,15 @@ export function pushNewUser(state) {
                                     type: USER_REG_SUCCESS,
                                     payload: {
                                         reg: true,
-                                        id: response.data.id
+                                        id: response.data.id,
+                                        error_message: '',
+
                                     }
                                 });
                             } else {
                                 dispatch({
                                     type: USERS_FAIL,
-                                    error_message: 'err'
+                                    error_message: 'err',
                                 });
                             }
                         })
@@ -86,7 +89,7 @@ export function signIn(state) {
     return dispatch => {
         dispatch({
             type: USERS_REQUEST,
-            error_message: ''
+            error_message: '',
         });
         axios
             .get(URL + 'users?search=' + state.username)
@@ -110,7 +113,8 @@ export function signIn(state) {
                                     avatar: res[0].avatar,
                                     email: res[0].email,
                                 }
-                            }
+                            },
+                            error_message: '',
                         });
                         localStorage.setItem('user', JSON.stringify(res[0]));
                         browserHistory.push('/')
@@ -136,7 +140,8 @@ export function signOut() {
             type: USER_SIGNOUT,
             payload: {
                 auth: false
-            }
+            },
+            error_message: '',
         });
         localStorage.removeItem('user');
         browserHistory.push('/')
