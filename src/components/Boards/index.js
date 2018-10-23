@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import Board from '../Board';
 export default class Boards extends Component {
-    render() {
-        let list = null;
-
-        list = this.props.boards.map(item => {
+    renderBoardList = (boards) => {
+        return boards.map(item => {
             return (
                 <div className="col-lg-2" key={item.id}>
-                    <Board id={item.id} userid={item.userId} title={item.name} date={item.createdAt} tasks={item.tasks} actions={this.props.actions}/>
+                    <Board id={item.id} userid={item.userId} title={item.name} date={item.createdAt} tasks={item.tasks} type={item.type} actions={this.props.actions} />
                 </div>
             );
         });
+    }
+    render() {
         return (
-            <div>
-                {list && <div className="row">{list}</div>}
-            </div>
+            <React.Fragment>
+                <div className="row">{(this.props.boards.length > 0) && this.renderBoardList(this.props.boards)}</div>
+            </React.Fragment>
         )
     }
 }

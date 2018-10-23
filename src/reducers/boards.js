@@ -55,6 +55,12 @@ export default function boards (state = initialState, action) {
                 request: false,
                 error_message: action.error_message,
             }
+        case BOARDS_DELETED:
+            return {
+                ...state,
+                request: false,
+                error_message: action.error_message,
+            }
         case BOARDS_TASK_EDITED:
             return {
                 ...state,

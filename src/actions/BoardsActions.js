@@ -65,6 +65,69 @@ export function addBoard(id) {
             })
     }
 }
+export function updateBoard(user_id, board_id, data) {
+    return dispatch => {
+        dispatch({
+            type: BOARDS_REQUEST,
+            error_message: '',
+        })
+        axios
+            .put(URL + `users/${user_id}/boards/${board_id}`, data)
+            .then(response => {
+                if (response.status === 200) {
+                    dispatch({
+                        type: BOARDS_EDITED,
+                        error_message: '',
+                    });
+                } else {
+                    dispatch({
+                        type: BOARDS_FAIL,
+                        error_message: 'err',
+                    });
+                }
+            })
+    }
+}
+export function deleteBoard(user_id, board_id) {
+    return dispatch => {
+        dispatch({
+            type: BOARDS_REQUEST,
+            error_message: '',
+        })
+        axios
+            .delete(URL + `users/${user_id}/boards/${board_id}`)
+            .then(response => {
+                if (response.status === 200) {
+                    dispatch({
+                        type: BOARDS_DELETED,
+                        error_message: '',
+                    });
+                    axios
+                        .get(URL + `users/${user_id}/boards`)
+                        .then(response => {
+                            if (response.status === 200) {
+                                dispatch({
+                                    type: BOARDS_GET,
+                                    response_data: response.data
+                                });
+                            }
+                        })
+                        .catch(response => {
+                            dispatch({
+                                type: BOARDS_FAIL,
+                                error_message: 'err'
+                            });
+                        })
+                } else {
+                    dispatch({
+                        type: BOARDS_FAIL,
+                        error_message: 'err',
+                    });
+                }
+            })
+
+    }
+}
 export function addTasks(user_id, board_id) {
     return dispatch => {
         dispatch({
@@ -89,29 +152,6 @@ export function addTasks(user_id, board_id) {
                     dispatch({
                         type: BOARDS_FAIL,
                         error_message: 'err'
-                    });
-                }
-            })
-    }
-}
-export function updateBoard(user_id, board_id, data) {
-    return dispatch => {
-        dispatch({
-            type: BOARDS_REQUEST,
-            error_message: '',
-        })
-        axios
-            .put(URL + `users/${user_id}/boards/${board_id}`, data)
-            .then(response => {
-                if (response.status === 200) {
-                    dispatch({
-                        type: BOARDS_EDITED,
-                        error_message: '',
-                    });
-                } else {
-                    dispatch({
-                        type: BOARDS_FAIL,
-                        error_message: 'err',
                     });
                 }
             })

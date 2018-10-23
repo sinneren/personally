@@ -43,7 +43,7 @@ export default class Task extends Component {
                 <div className="d-flex w-100 justify-content-between  text-left">
                     <ContentEditable className="mb-1" html={this.state.title} onBlur={this.handleTitleChange} onChange={this.handleTitleInput} tagName='h5' />
                     <small className="text-muted">{this.state.type}</small>
-                    <button className="btn btn-sm btn-outline-danger" onClick={this.handleClick}>X</button>
+                    <button className="btn btn-sm btn-outline-danger btn-delete" onClick={this.handleClick}>X</button>
                 </div>
                     <ContentEditable className="mt-1 mb-1 text-left" html={(this.state.text) ? this.state.text : 'Click to change text...'} onBlur={this.handleTextChange} onChange={this.handleTextInput} tagName='div' />
             </div>
