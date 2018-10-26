@@ -7,6 +7,7 @@ export default class Board extends Component {
         super(props);
         this.state = {
             title: this.props.title,
+            cache_title: this.props.title,
         }
     }
     handleTitleChange = () => {

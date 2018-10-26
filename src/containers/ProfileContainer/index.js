@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Profile from '../../components/Profile';
 import { browserHistory } from 'react-router';
+import { connect } from 'react-redux';
 
 class ProfileContainer extends Component {
     constructor(props) {
@@ -30,5 +31,22 @@ function mapStateToProps(state) {
         state
     }
 }
-
+ProfileContainer.defaultProps = {
+    state: {
+        users: {
+            user: {
+                avatar: '',
+                username: '',
+                email: '',
+            }
+        }
+    }
+}
+ProfileContainer.propTypes = {
+    state: {
+        users: {
+            user: PropTypes.object.isRequired
+        }
+    }
+}
 export default connect(mapStateToProps)(ProfileContainer)

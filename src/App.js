@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import TopMenu from './components/TopMenu';
 import User from './components/User';
 import * as usersActions from './actions/UserActions';
@@ -51,5 +52,16 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators(usersActions, dispatch)
   }
 }
-
+App.propTypes = {
+  children: PropTypes.node,
+  state: {
+    auth: PropTypes.bool.isRequired,
+    users: {
+      user: PropTypes.object,
+    }
+  },
+  actions: {
+    signOut: PropTypes.func.isRequired,
+  },
+}
 export default connect(mapStateToProps, mapDispatchToProps)(App)

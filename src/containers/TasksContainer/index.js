@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
+import PropTypes from 'prop-types';
 import Boards from '../../components/Boards';
 import * as boardsActions from '../../actions/BoardsActions';
 
@@ -41,6 +42,20 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators(boardsActions, dispatch)
+    }
+}
+TasksContainer.propTypes = {
+    actions: {
+        addBoard: PropTypes.func.isRequired,
+        getBoards: PropTypes.func.isRequired,
+    },
+    state: {
+        users: {
+            user: PropTypes.object,
+        },
+        boards: {
+            data: PropTypes.object,
+        }
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(TasksContainer)
