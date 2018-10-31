@@ -52,7 +52,7 @@ export default function users(state = initialState, action) {
                 request: false,
                 id: action.payload.id,
                 reg: action.payload.reg,
-                error_message: action.error_message,
+                error_message: action.payload.error_message,
             }
         case USER_AUTH_SUCCESS:
             return {
@@ -60,7 +60,7 @@ export default function users(state = initialState, action) {
                 request: false,
                 auth: action.payload.auth,
                 user: action.payload.user,
-                error_message: action.error_message,
+                error_message: action.payload.error_message,
             }
         case USER_SIGNOUT:
             return {

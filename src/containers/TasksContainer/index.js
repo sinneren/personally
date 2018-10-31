@@ -20,6 +20,7 @@ class TasksContainer extends Component {
     }
 
     componentDidMount() {
+        document.title = 'Tasks';
         if (this.props.state.users.user !== null) {
             this.props.actions.getBoards(this.props.state.users.user.id)
         }

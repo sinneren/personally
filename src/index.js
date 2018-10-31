@@ -13,8 +13,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 
 import App from './App';
-import FormAuth from './components/FormAuth';
-import FormReg from './components/FormReg';
+import AuthContainer from './containers/AuthContainer';
+import RegContainer from './containers/RegContainer';
 import ProfileContainer from './containers/ProfileContainer';
 import TasksContainer from './containers/TasksContainer';
 
@@ -26,8 +26,8 @@ const store = createStore(reducer, applyMiddleware(...middleware));
 
 const routes = (
     <Route path='/' component={App}>
-        <Route path='/signin' component={FormAuth} />
-        <Route path='/signup' component={FormReg} />
+        <Route path='/signin' component={AuthContainer} />
+        <Route path='/signup' component={RegContainer} />
         <Route path='/profile' component={ProfileContainer} />
         <Route path='/tasks' component={TasksContainer} />
     </Route>

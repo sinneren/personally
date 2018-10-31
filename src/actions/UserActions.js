@@ -65,7 +65,6 @@ export function pushNewUser(state) {
                                         reg: true,
                                         id: response.data.id,
                                         error_message: '',
-
                                     }
                                 });
                             } else {
@@ -112,9 +111,9 @@ export function signIn(state) {
                                     username: res[0].username,
                                     avatar: res[0].avatar,
                                     email: res[0].email,
-                                }
+                                },
+                                error_message: '',
                             },
-                            error_message: '',
                         });
                         localStorage.setItem('user', JSON.stringify(res[0]));
                         browserHistory.push('/')

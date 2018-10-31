@@ -54,14 +54,5 @@ function mapDispatchToProps(dispatch) {
 }
 App.propTypes = {
   children: PropTypes.node,
-  state: {
-    auth: PropTypes.bool.isRequired,
-    users: {
-      user: PropTypes.object,
-    }
-  },
-  actions: {
-    signOut: PropTypes.func.isRequired,
-  },
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App)

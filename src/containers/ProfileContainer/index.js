@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 class ProfileContainer extends Component {
     constructor(props) {
         super(props);
-        this.defaultProps = {
+        this.initialProps = {
             avatar: '',
             username: '',
             email: '',
@@ -15,13 +15,16 @@ class ProfileContainer extends Component {
         if (this.props.state.users.user === null) {
             browserHistory.push('/');
         } else {
-            this.defaultProps = this.props.state.users.user;
+            this.initialProps = this.props.state.users.user;
         }
 
     }
+    componentDidMount () {
+        document.title = 'Profile';
+    }
     render() {
         return (
-            <Profile data={this.defaultProps} />
+            <Profile data={this.initialProps} />
         )
     }
 }
@@ -31,22 +34,8 @@ function mapStateToProps(state) {
         state
     }
 }
-ProfileContainer.defaultProps = {
-    state: {
-        users: {
-            user: {
-                avatar: '',
-                username: '',
-                email: '',
-            }
-        }
-    }
-}
+
 ProfileContainer.propTypes = {
-    state: {
-        users: {
-            user: PropTypes.object.isRequired
-        }
-    }
+    state: PropTypes.object.isRequired,
 }
 export default connect(mapStateToProps)(ProfileContainer)

@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
-import * as usersActions from '../../actions/UserActions';
 import Alert from '../Alert';
 
-class FormAuth extends Component {
+export default class FormAuth extends Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
@@ -25,11 +21,7 @@ class FormAuth extends Component {
         event.preventDefault();
         this.props.actions.signIn(this.state);
     }
-    componentDidUpdate() {
-        if (this.props.state.users.auth) {
-            browserHistory.push('/profile');
-        }
-    }
+
     render() {
         return (
             <form className="pt-5">
@@ -59,14 +51,3 @@ class FormAuth extends Component {
         )
     }
 }
-function mapStateToProps(state) {
-    return {
-        state
-    }
-}
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators(usersActions, dispatch)
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(FormAuth)

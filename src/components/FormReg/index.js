@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import * as usersActions from '../../actions/UserActions';
 import Alert from '../Alert';
 
-class FormReg extends Component {
+export default class FormReg extends Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
@@ -75,6 +72,7 @@ class FormReg extends Component {
     validateForm () {
         this.setState({ valid: this.state.usernameValid && this.state.passwordValid && this.state.emailValid});
     }
+
     render() {
         return (
             <form className="pt-5 ">
@@ -125,14 +123,3 @@ class FormReg extends Component {
         )
     }
 }
-function mapStateToProps(state) {
-    return {
-        state
-    }
-}
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators(usersActions, dispatch)
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(FormReg)
