@@ -46,17 +46,7 @@ function mapDispatchToProps(dispatch) {
     }
 }
 TasksContainer.propTypes = {
-    actions: {
-        addBoard: PropTypes.func.isRequired,
-        getBoards: PropTypes.func.isRequired,
-    },
-    state: {
-        users: {
-            user: PropTypes.object,
-        },
-        boards: {
-            data: PropTypes.object,
-        }
-    }
+    state: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired,
 }
 export default connect(mapStateToProps, mapDispatchToProps)(TasksContainer)

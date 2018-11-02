@@ -25,7 +25,7 @@ if (process.env.NODE_ENV !== "production") {
 const store = createStore(reducer, applyMiddleware(...middleware));
 
 const routes = (
-    <Route path='/' component={App}>
+    <Route path='/'  component={App}>
         <Route path='/signin' component={AuthContainer} />
         <Route path='/signup' component={RegContainer} />
         <Route path='/profile' component={ProfileContainer} />
