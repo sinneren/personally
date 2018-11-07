@@ -10,13 +10,15 @@ export default class Board extends Component {
             cache_title: this.props.title,
         }
     }
-    handleTitleChange = () => {
-        this.props.actions.updateBoard(this.props.userid, this.props.id, { name: this.state.title});
-    }
-    handleTitleInput = event => {
-        this.setState({
-            title: event.target.value,
-        })
+    handleChange = event => {
+        const text = event.currentTarget.innerText;
+
+        if (this.props.title !== text) {
+            this.setState({
+                title: text
+            })
+            this.props.actions.updateBoard(this.props.userid, this.props.id, { name: text});
+        }
     }
     handleClick = event => {
         event.preventDefault();
@@ -33,7 +35,7 @@ export default class Board extends Component {
                     id={item.id}
                     userid={this.props.userid}
                     board_id={this.props.id}
-                    title={item.name}
+                    name={item.name}
                     text={(item.text) ? item.text : ''}
                     type={item.type}
                     actions={this.props.actions}
@@ -49,7 +51,12 @@ export default class Board extends Component {
         return (
             <div className="list-group mb-5">
                 <div className="list-group-item list-group-item-action flex-column align-items-start active text-left">
-                    <ContentEditable className="mb-1" html={this.state.title} onBlur={this.handleTitleChange} onChange={this.handleTitleInput} tagName='h5' />
+                    <ContentEditable
+                        tagName='h5'
+                        className="mb-1"
+                        html={this.state.title}
+                        onBlur={this.handleChange}
+                    />
                     <small>{this.calculateDateTimeFormatted(this.props.date)}</small>
                     <button className="btn btn-sm btn-outline-danger btn-delete float-right" onClick={this.handleDelete}>X</button>
                 </div>
