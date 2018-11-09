@@ -31,20 +31,20 @@ export default function users(state = initialState, action) {
             return {
                 ...state,
                 request: true,
-                error_message: action.error_message,
+                error_message: action.payload.error_message,
             }
         case USERS_SUCCESS:
             return {
                 ...state,
-                data: action.response_data,
+                data: action.payload.response_data,
                 request: false,
-                error_message: action.error_message,
+                error_message: action.payload.error_message,
             }
         case USERS_FAIL:
             return {
                 ...state,
                 request: false,
-                error_message: action.error_message,
+                error_message: action.payload.error_message,
             }
         case USER_REG_SUCCESS:
             return {
@@ -67,7 +67,7 @@ export default function users(state = initialState, action) {
                 ...state,
                 auth: action.payload.auth,
                 user: null,
-                error_message: action.error_message,
+                error_message: action.payload.error_message,
             }
         default:
             return state

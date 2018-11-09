@@ -15,7 +15,9 @@ export function getUserList() {
     return dispatch => {
         dispatch({
             type: USERS_REQUEST,
-            error_message: '',
+            payload: {
+                error_message: '',
+            }
         });
         axios
             .get(URL + 'users')
@@ -23,15 +25,19 @@ export function getUserList() {
                 if (response.status === 200) {
                     dispatch({
                         type: USERS_SUCCESS,
-                        response_data: response.data,
-                        error_message: '',
+                        payload: {
+                            response_data: response.data,
+                            error_message: '',
+                        }
                     });
                 }
             })
             .catch(response => {
                 dispatch({
                     type: USERS_FAIL,
-                    error_message: 'err'
+                    payload: {
+                        error_message: 'err'
+                    }
                 });
             })
     }
@@ -40,7 +46,9 @@ export function pushNewUser(state) {
     return dispatch => {
         dispatch({
             type: USERS_REQUEST,
-            error_message: '',
+            payload: {
+                error_message: '',
+            }
         });
         axios
             .get(URL + 'users?search=' + state.username)
@@ -48,7 +56,9 @@ export function pushNewUser(state) {
                 if (response.data.length > 0) {
                     dispatch({
                         type: USERS_FAIL,
-                        error_message: 'Пользователь с логином "' + state.username + '" уже зарегистрирован.'
+                        payload: {
+                            error_message: 'Пользователь с логином "' + state.username + '" уже зарегистрирован.'
+                        }
                     });
                 } else {
                     const data = {
@@ -70,7 +80,9 @@ export function pushNewUser(state) {
                             } else {
                                 dispatch({
                                     type: USERS_FAIL,
-                                    error_message: 'err',
+                                    payload: {
+                                        error_message: 'err',
+                                    }
                                 });
                             }
                         })
@@ -79,7 +91,9 @@ export function pushNewUser(state) {
             .catch(response => {
                 dispatch({
                     type: USERS_FAIL,
-                    error_message: 'err'
+                    payload: {
+                        error_message: 'err'
+                    }
                 });
             })
     }
@@ -88,7 +102,9 @@ export function signIn(state) {
     return dispatch => {
         dispatch({
             type: USERS_REQUEST,
-            error_message: '',
+            payload: {
+                error_message: '',
+            }
         });
         axios
             .get(URL + 'users?search=' + state.username)
@@ -96,7 +112,9 @@ export function signIn(state) {
                 if (response.data.length === 0) {
                     dispatch({
                         type: USERS_FAIL,
-                        error_message: 'Пользователь с логином "' + state.username + '" НЕ зарегистрирован.'
+                        payload: {
+                            error_message: 'Пользователь с логином "' + state.username + '" НЕ зарегистрирован.'
+                        }
                     });
                 } else {
                     let hash_password = sha256(state.password);
@@ -126,9 +144,12 @@ export function signIn(state) {
                 }
             })
             .catch(response => {
+                console.log.bind(console)
                 dispatch({
                     type: USERS_FAIL,
-                    error_message: 'err'
+                    payload: {
+                        error_message: response,
+                    }
                 });
             })
     }
@@ -138,9 +159,9 @@ export function signOut() {
         dispatch({
             type: USER_SIGNOUT,
             payload: {
-                auth: false
+                auth: false,
+                error_message: '',
             },
-            error_message: '',
         });
         localStorage.removeItem('user');
         browserHistory.push('/')

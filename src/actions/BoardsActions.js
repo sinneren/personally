@@ -24,14 +24,19 @@ export function getBoards(id) {
                 if (response.status === 200) {
                     dispatch({
                         type: BOARDS_GET,
-                        response_data: response.data
+                        payload: {
+                            response_data: response.data
+                        }
                     });
                 }
             })
             .catch(response => {
+                console.log.bind(console)
                 dispatch({
                     type: BOARDS_FAIL,
-                    error_message: 'err'
+                    payload: {
+                        error_message: response
+                    }
                 });
             })
     }
@@ -40,7 +45,9 @@ export function addBoard(id) {
     return dispatch => {
         dispatch({
             type: BOARDS_REQUEST,
-            error_message: ''
+            payload: {
+                error_message: ''
+            }
         });
         axios
             .post(URL + `users/${id}/boards`, {
@@ -59,9 +66,20 @@ export function addBoard(id) {
                 } else {
                     dispatch({
                         type: BOARDS_FAIL,
-                        error_message: 'err'
+                        payload: {
+                            error_message: 'err'
+                        }
                     });
                 }
+            })
+            .catch(response => {
+                console.log.bind(console)
+                dispatch({
+                    type: BOARDS_FAIL,
+                    payload: {
+                        error_message: response
+                    }
+                });
             })
     }
 }
@@ -69,7 +87,9 @@ export function updateBoard(user_id, board_id, data) {
     return dispatch => {
         dispatch({
             type: BOARDS_REQUEST,
-            error_message: '',
+            payload: {
+                error_message: '',
+            }
         })
         axios
             .put(URL + `users/${user_id}/boards/${board_id}`, data)
@@ -77,14 +97,27 @@ export function updateBoard(user_id, board_id, data) {
                 if (response.status === 200) {
                     dispatch({
                         type: BOARDS_EDITED,
-                        error_message: '',
+                        payload: {
+                            error_message: '',
+                        }
                     });
                 } else {
                     dispatch({
                         type: BOARDS_FAIL,
-                        error_message: 'err',
+                        payload: {
+                            error_message: 'err',
+                        }
                     });
                 }
+            })
+            .catch(response => {
+                console.log.bind(console)
+                dispatch({
+                    type: BOARDS_FAIL,
+                    payload: {
+                        error_message: response
+                    }
+                });
             })
     }
 }
@@ -92,7 +125,9 @@ export function deleteBoard(user_id, board_id) {
     return dispatch => {
         dispatch({
             type: BOARDS_REQUEST,
-            error_message: '',
+            payload: {
+                error_message: '',
+            }
         })
         axios
             .delete(URL + `users/${user_id}/boards/${board_id}`)
@@ -100,7 +135,9 @@ export function deleteBoard(user_id, board_id) {
                 if (response.status === 200) {
                     dispatch({
                         type: BOARDS_DELETED,
-                        error_message: '',
+                        payload: {
+                            error_message: '',
+                        }
                     });
                     axios
                         .get(URL + `users/${user_id}/boards`)
@@ -108,22 +145,38 @@ export function deleteBoard(user_id, board_id) {
                             if (response.status === 200) {
                                 dispatch({
                                     type: BOARDS_GET,
-                                    response_data: response.data
+                                    payload: {
+                                        response_data: response.data
+                                    }
                                 });
                             }
                         })
                         .catch(response => {
+                            console.log.bind(console)
                             dispatch({
                                 type: BOARDS_FAIL,
-                                error_message: 'err'
+                                payload: {
+                                    error_message: response
+                                }
                             });
                         })
                 } else {
                     dispatch({
                         type: BOARDS_FAIL,
-                        error_message: 'err',
+                        payload: {
+                            error_message: 'err',
+                        }
                     });
                 }
+            })
+            .catch(response => {
+                console.log.bind(console)
+                dispatch({
+                    type: BOARDS_FAIL,
+                    payload: {
+                        error_message: response
+                    }
+                });
             })
 
     }
@@ -132,7 +185,9 @@ export function addTasks(user_id, board_id) {
     return dispatch => {
         dispatch({
             type: BOARDS_REQUEST,
-            error_message: '',
+            payload: {
+                error_message: '',
+            }
         });
         axios
             .post(URL + `users/${user_id}/boards/${board_id}/tasks`, {
@@ -151,9 +206,20 @@ export function addTasks(user_id, board_id) {
                 } else {
                     dispatch({
                         type: BOARDS_FAIL,
-                        error_message: 'err'
+                        payload: {
+                            error_message: 'err'
+                        }
                     });
                 }
+            })
+            .catch(response => {
+                console.log.bind(console)
+                dispatch({
+                    type: BOARDS_FAIL,
+                    payload: {
+                        error_message: response
+                    }
+                });
             })
     }
 }
@@ -161,7 +227,9 @@ export function updateTask(user_id, board_id, id, data) {
     return dispatch => {
         dispatch({
             type: BOARDS_REQUEST,
-            error_message: '',
+            payload: {
+                error_message: '',
+            }
         })
         axios
             .put(URL + `users/${user_id}/boards/${board_id}/tasks/${id}`, data)
@@ -169,14 +237,27 @@ export function updateTask(user_id, board_id, id, data) {
                 if (response.status === 200) {
                     dispatch({
                         type: BOARDS_TASK_EDITED,
-                        error_message: '',
+                        payload: {
+                            error_message: '',
+                        }
                     });
                 } else {
                     dispatch({
                         type: BOARDS_FAIL,
-                        error_message: 'err',
+                        payload: {
+                            error_message: 'err',
+                        }
                     });
                 }
+            })
+            .catch(response => {
+                console.log.bind(console)
+                dispatch({
+                    type: BOARDS_FAIL,
+                    payload: {
+                        error_message: response
+                    }
+                });
             })
     }
 }
@@ -184,23 +265,37 @@ export function deleteTask(user_id, board_id, id) {
       return dispatch => {
         dispatch({
             type: BOARDS_REQUEST,
-            error_message: '',
+            payload: {
+                error_message: '',
+            }
         })
         axios
             .delete(URL + `users/${user_id}/boards/${board_id}/tasks/${id}`)
             .then(response => {
                 if (response.status === 200) {
-                    console.log(response)
                     dispatch({
                         type: BOARDS_TASK_DELETED,
-                        error_message: '',
+                        payload: {
+                            error_message: '',
+                        }
                     });
                 } else {
                     dispatch({
                         type: BOARDS_FAIL,
-                        error_message: 'err',
+                        payload: {
+                            error_message: 'err',
+                        }
                     });
                 }
+            })
+            .catch(response => {
+                console.log.bind(console)
+                dispatch({
+                    type: BOARDS_FAIL,
+                    payload: {
+                        error_message: response
+                    }
+                });
             })
     }
 }

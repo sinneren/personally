@@ -24,7 +24,7 @@ export default function boards (state = initialState, action) {
         case BOARDS_GET:
             return {
                 ...state,
-                data: action.response_data,
+                data: action.payload.response_data,
                 request: false,
             }
         case BOARDS_ADDED:
@@ -47,31 +47,31 @@ export default function boards (state = initialState, action) {
             return {
                 ...state,
                 request: false,
-                error_message: action.error_message,
+                error_message: action.payload.error_message,
             }
         case BOARDS_EDITED:
             return {
                 ...state,
                 request: false,
-                error_message: action.error_message,
+                error_message: action.payload.error_message,
             }
         case BOARDS_DELETED:
             return {
                 ...state,
                 request: false,
-                error_message: action.error_message,
+                error_message: action.payload.error_message,
             }
         case BOARDS_TASK_EDITED:
             return {
                 ...state,
                 request: false,
-                error_message: action.error_message,
+                error_message: action.payload.error_message,
             }
         case BOARDS_TASK_DELETED:
             return {
                 ...state,
                 request: false,
-                error_message: action.error_message,
+                error_message: action.payload.error_message,
             }
         default:
             return state
